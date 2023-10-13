@@ -42,9 +42,16 @@
                                     <selected id="productonInputtype" name="genre">
                                         <select type="text" name="genre" id="productonInputtype" class="form-control col-5" required>
                                             <option selected>ジャンル選択</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="1" @if(old('genre')==1) selected @endif>1.単行本</option>
+                                            <option value="2" @if(old('genre')==2) selected @endif>2.文庫</option>
+                                            <option value="3" @if(old('genre')==3) selected @endif>3.新書</option>
+                                            <option value="4" @if(old('genre')==4) selected @endif>4.全集･双書</option>
+                                            <option value="5" @if(old('genre')==5) selected @endif>5.コミック</option>
+                                            <option value="6" @if(old('genre')==6) selected @endif>6.事･辞典</option>
+                                            <option value="7" @if(old('genre')==7) selected @endif>7.図鑑</option>
+                                            <option value="8" @if(old('genre')==8) selected @endif>8.絵本</option>
+                                            <option value="9" @if(old('genre')==9) selected @endif>9.磁性媒体</option>
+                                            <option value="10" @if(old('genre')==10) selected @endif>10.雑誌･その他</option>
                                         </selected>
                                     </select>
                                     </label>

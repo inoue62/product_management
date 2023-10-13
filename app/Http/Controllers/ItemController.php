@@ -21,14 +21,47 @@ class ItemController extends Controller
     /**
      * 書籍一覧
      */
-    public function index()
+//    public function index()
+//    {
+//        // 書籍一覧取得
+//        $items = Item::all();
+//
+//        return view('item.index', compact('items'));
+//    }
+    public function index(Request $request)
     {
-        // 書籍一覧取得
-        $items = Item::all();
+        $keyword = $request -> keyword;
+        $keygenre = $request -> keygenre;
+        $clear = $request -> clear;
+        $query = Item::query();
 
-        return view('item.index', compact('items'));
+        if($keygenre){
+            //ジャンル選択時
+            if($keyword){
+                //キーワード入力時
+                $query =  $query->where(function($query) use($keyword){
+                    $query->where( 'name' , 'like' , '%' . $keyword .'%' )
+                        ->orwhere( 'author' , 'like' , '%' . $keyword .'%' )
+                        ->orwhere( 'detail' , 'like' , '%' . $keyword .'%' );
+                })->where( 'genre', $keygenre );
+            }else{
+                //キーワード未入力時
+                $query = $query->where( 'genre', $keygenre );
+            }
+        }else if($keyword){
+            //ジャンル非選択時　キーワード入力時
+            $query = $query->where( 'name' , 'like' , '%' . $keyword .'%' )
+            ->orwhere( 'author' , 'like' , '%' . $keyword .'%' )
+            ->orwhere( 'detail' , 'like' , '%' . $keyword .'%' );
+        }
+
+        $items = $query ->orderBy('id', 'asc') ->paginate(10);
+        return view('item.index',[
+            'items'=> $items,
+            'keyword' => $keyword,
+            'keygenre' => $keygenre
+        ]);
     }
-
     /**
      * 書籍登録
      */
