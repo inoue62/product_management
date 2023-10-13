@@ -19,18 +19,18 @@ class ItemController extends Controller
     }
 
     /**
-     * 商品一覧
+     * 書籍一覧
      */
     public function index()
     {
-        // 商品一覧取得
+        // 書籍一覧取得
         $items = Item::all();
 
         return view('item.index', compact('items'));
     }
 
     /**
-     * 商品登録
+     * 書籍登録
      */
     public function add(Request $request)
     {
@@ -41,11 +41,16 @@ class ItemController extends Controller
                 'name' => 'required|max:100',
             ]);
 
-            // 商品登録
+            // 書籍登録
             Item::create([
                 'user_id' => Auth::user()->id,
                 'name' => $request->name,
-                'type' => $request->type,
+                'genre' => $request->genre,
+                'author' => $request->author,
+                'publisher' => $request->publisher,
+                'release_date' => $request->release_date,
+                'stock' => $request->stock,
+                'price' => $request->price,
                 'detail' => $request->detail,
             ]);
 

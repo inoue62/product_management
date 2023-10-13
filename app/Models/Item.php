@@ -16,6 +16,13 @@ class Item extends Model
         'name',
         'type',
         'detail',
+        'genre',
+        'release_date',
+        'price',
+        'author',
+        'publisher',
+        'stock',
+        'image',
     ];
 
     /**
