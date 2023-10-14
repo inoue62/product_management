@@ -26,6 +26,8 @@
                     <button>アップロード</button>
                 </form>
 
+
+
                 <form method="POST">
                     @csrf
                     <div class="card-body">
@@ -97,7 +99,7 @@
 
                         <div class="form-group">
                             <label for="InputDetail" class="form-label">詳細</label>
-                            <td><textarea type="text" id="InputDetail" class="form-control" name="detail" rows="5" placeholder="詳細説明" required></textarea></td>
+                            <td><textarea type="text" id="InputDetail" class="form-control" name="detail" rows="5" placeholder="詳細説明"></textarea></td>
                         </div>
                     </div>
 

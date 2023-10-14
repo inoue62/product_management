@@ -25,6 +25,9 @@ class ImageController extends Controller
         $image->path = 'storage/' . $dir . '/' . $file_name;
         $image->save();
 
-        return redirect('/items/add');
+        return view('item.add',[
+            'images'=> $image
+        ]);
+        //return redirect('/items/add');
     }
 }

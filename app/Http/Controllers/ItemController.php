@@ -69,10 +69,26 @@ class ItemController extends Controller
     {
         // POSTリクエストのとき
         if ($request->isMethod('post')) {
-            // バリデーション
-            $this->validate($request, [
-                'name' => 'required|max:100',
-            ]);
+
+            //エラーチェック
+            $rule=[
+                'name' => 'required|max:100',                                                                          
+                'genre' => 'integer',                                                        
+                'author' => 'required|max:100',   
+                'publisher' => 'max:100', 
+                'detail' => 'max:500', 
+                ];
+            //エラーメッセージ
+            $msg=[
+                'name.required' => '書籍名を入力してください',
+                'name.max' => '書籍名は100文字以下で入力してください',
+                'genre.integer' => 'ジャンルを選択してください',
+                'author.required' => '著者名を入力してください',
+                'author.max' => '著者名は100文字以下で入力してください',
+                'publisher.max' => '出版社名は100文字以下で入力してください',
+                'detail.max' => '詳細は500文字以下で入力してください',
+                ];
+            $request->validate($rule,$msg);
 
             // 書籍登録
             Item::create([
