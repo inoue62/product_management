@@ -25,6 +25,10 @@
                     <input type="file" name="image">
                     <button>アップロード</button>
                 </form>
+                
+                @foreach($images as $image)
+                <img src="{{ asset($image->path) }}">
+                @endforeach
 
                 <form method="POST" action="/items/edit/update/{{$item->id}}">
                     @csrf
