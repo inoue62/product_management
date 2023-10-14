@@ -159,4 +159,27 @@ class ItemController extends Controller
         Item::find($request->id)->delete();
         return redirect('/items');
     }
+
+    public function upload(Request $request)
+    {
+        // ディレクトリ名
+        $dir = 'sample';
+
+        // アップロードされたファイル名を取得
+        $file_name = $request->file('item')->getClientOriginalName();
+
+        // 取得したファイル名で保存
+        $request->file('item')->storeAs('public/' . $dir, $file_name);
+
+        // ファイル情報をDBに保存
+        $item = new Image();
+        $item->image = $file_name;
+        $item->image_path = 'storage/' . $dir . '/' . $file_name;
+        $item->save();
+
+        return view('item.add',[
+            'images'=> $item
+        ]);
+//        return redirect('/items/add');
+    }
 }

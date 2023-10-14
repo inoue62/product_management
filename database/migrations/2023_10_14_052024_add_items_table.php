@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('author', 100)->nullable();
             $table->string('publisher', 100)->nullable();
             $table->Integer('stock')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image', 100)->nullable();
         });
     }
 

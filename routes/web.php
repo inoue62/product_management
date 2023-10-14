@@ -30,5 +30,6 @@ Route::prefix('items')->group(function () {
     Route::post('/edit/update/{id}', [App\Http\Controllers\ItemController::class, 'update']);
     Route::post('/edit/delete/{id}', [App\Http\Controllers\ItemController::class, 'delete']);
     
-    Route::post('/add/upload', [App\Http\Controllers\ImageController::class, 'upload']);
+    Route::post('/add/upload', [App\Http\Controllers\ItemController::class, 'upload']);
+//    Route::post('/add/upload', [App\Http\Controllers\ImageController::class, 'upload']);
 });

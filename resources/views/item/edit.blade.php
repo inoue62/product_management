@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', '書籍登録')
+@section('title', '書籍編集')
 
 @section('content_header')
-    <h1>書籍登録</h1>
+    <h1>書籍編集</h1>
 @stop
 
 @section('content')
@@ -26,9 +26,7 @@
                     <button>アップロード</button>
                 </form>
                 
-                @foreach($images as $image)
-                <img src="{{ asset($image->path) }}">
-                @endforeach
+
 
                 <form method="POST" action="/items/edit/update/{{$item->id}}">
                     @csrf
