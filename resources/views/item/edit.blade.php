@@ -32,7 +32,7 @@
                         <label style="color:#FF0000;">必須入力 * </label>
                         <div class="form-group">
                             <label for="name">書籍名<span style="color:#FF0000;">*</span></label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{$item->name}}" placeholder="名前">
+                            <input type="text" class="form-control" id="name" name="name" value="{{old('name',$item->name)}}" placeholder="名前">
                         </div>
 
                         <div class="row">
@@ -60,7 +60,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="detail">発売日</label>
-                                    <input type="text" class="form-control" id="release_date" name="release_date" value="{{$item->release_date}}" placeholder="発売日">
+                                    <input type="text" class="form-control" id="release_date" name="release_date" value="{{old('name',$item->release_date)}}" placeholder="発売日">
                                 </div>
                             </div>
                        </div>
@@ -69,13 +69,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="detail">著者<span style="color:#FF0000;">*</span></label>
-                                    <input type="text" class="form-control" id="author" name="author" value="{{$item->author}}" placeholder="著者名">
+                                    <input type="text" class="form-control" id="author" name="author" value="{{old('name',$item->author)}}" placeholder="著者名">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="detail">出版社</label>
-                                    <input type="text" class="form-control" id="publisher" name="publisher" value="{{$item->publisher}}" placeholder="出版社名">
+                                    <input type="text" class="form-control" id="publisher" name="publisher" value="{{old('name',$item->publisher)}}" placeholder="出版社名">
                                 </div>
                             </div>
                        </div>
@@ -84,20 +84,20 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="detail">在庫</label>
-                                    <input type="text" class="form-control" id="stock" name="stock" value="{{$item->stock}}" placeholder="在庫数">
+                                    <input type="text" class="form-control" id="stock" name="stock" value="{{old('name',$item->stock)}}" placeholder="在庫数">
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="detail">価格</label>
-                                    <input type="text" class="form-control" id="price" name="price" value="{{$item->price}}" placeholder="価格（円）">
+                                    <input type="text" class="form-control" id="price" name="price" value="{{old('name',$item->price)}}" placeholder="価格（円）">
                                 </div>
                             </div>
                        </div>
 
                         <div class="form-group">
                             <label for="InputDetail" class="form-label">詳細</label>
-                            <td><textarea type="text" id="InputDetail" class="form-control" name="detail" rows="5" value="{{$item->detail}}" placeholder="詳細説明"></textarea></td>
+                            <td><textarea type="text" id="InputDetail" class="form-control" name="detail" rows="5" value="{{old('name',$item->detail)}}" placeholder="詳細説明"></textarea></td>
                         </div>
                     </div>
 
