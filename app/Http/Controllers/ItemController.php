@@ -91,18 +91,49 @@ class ItemController extends Controller
                 ];
             $request->validate($rule,$msg);
 
-            // 書籍登録
-            Item::create([
-                'user_id' => Auth::user()->id,
-                'name' => $request->name,
-                'genre' => $request->genre,
-                'author' => $request->author,
-                'publisher' => $request->publisher,
-                'release_date' => $request->release_date,
-                'stock' => $request->stock,
-                'price' => $request->price,
-                'detail' => $request->detail,
-            ]);
+            if($request->image){
+                // ディレクトリ名
+                $dir = 'sample';
+    
+                // アップロードされたファイル名を取得
+                $file_name = $request->file('image')->getClientOriginalName();
+//                $file_name = $request->image->getClientOriginalName();
+    
+                // 取得したファイル名で保存
+                $request->file('image')->storeAs('public/' . $dir, $file_name);
+    
+                // ファイル情報をDBに保存
+//                $item->image = $file_name;
+//                $item->image_path = 'storage/' . $dir . '/' . $file_name;
+
+                // 書籍登録
+                Item::create([
+                    'user_id' => Auth::user()->id,
+                    'name' => $request->name,
+                    'genre' => $request->genre,
+                    'author' => $request->author,
+                    'publisher' => $request->publisher,
+                    'release_date' => $request->release_date,
+                    'stock' => $request->stock,
+                    'price' => $request->price,
+                    'detail' => $request->detail,
+                    'image' => $file_name,
+                    'type' => 'storage/' . $dir . '/' . $file_name
+                ]);
+            }else{
+                // 書籍登録
+                Item::create([
+                    'user_id' => Auth::user()->id,
+                    'name' => $request->name,
+                    'genre' => $request->genre,
+                    'author' => $request->author,
+                    'publisher' => $request->publisher,
+                    'release_date' => $request->release_date,
+                    'stock' => $request->stock,
+                    'price' => $request->price,
+                    'detail' => $request->detail,
+                ]);
+            }
 
             return redirect('/items');
         }
@@ -148,6 +179,21 @@ class ItemController extends Controller
         $item->stock = $request->stock;
         $item->detail = $request->detail;
 
+        if($request->image){
+            // ディレクトリ名
+            $dir = 'sample';
+
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('image')->getClientOriginalName();
+
+            // 取得したファイル名で保存
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+
+            // ファイル情報をDBに保存
+            $item->image = $file_name;
+            $item->type = 'storage/' . $dir . '/' . $file_name;
+        }
+
         $item->save();
 
         return redirect('/items');
@@ -160,26 +206,26 @@ class ItemController extends Controller
         return redirect('/items');
     }
 
-    public function upload(Request $request)
+    public function upload(Request $request,$id)
     {
-        // ディレクトリ名
-        $dir = 'sample';
+        $item = Item::find($request->id);
+        
+        if($request->image){
+            // ディレクトリ名
+            $dir = 'sample';
+    
+            // アップロードされたファイル名を取得
+            $file_name = $request->file('image')->getClientOriginalName();
+    
+            // 取得したファイル名で保存
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+    
+            $item->image = $file_name;
+            $item->type = 'storage/' . $dir . '/' . $file_name;
+            $item->save();
+        }
 
-        // アップロードされたファイル名を取得
-        $file_name = $request->file('item')->getClientOriginalName();
 
-        // 取得したファイル名で保存
-        $request->file('item')->storeAs('public/' . $dir, $file_name);
-
-        // ファイル情報をDBに保存
-        $item = new Image();
-        $item->image = $file_name;
-        $item->image_path = 'storage/' . $dir . '/' . $file_name;
-        $item->save();
-
-        return view('item.add',[
-            'images'=> $item
-        ]);
-//        return redirect('/items/add');
+        return view('item.edit',['item' => $item]);
     }
 }

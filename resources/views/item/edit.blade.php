@@ -20,17 +20,19 @@
             @endif
 
             <div class="card card-primary">
-                <form method="POST" action="/items/add/upload" enctype="multipart/form-data">
+                <form method="POST" action="/items/edit/upload/{{$item->id}}" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="image">
                     <button>アップロード</button>
                 </form>
-                
 
-
-                <form method="POST" action="/items/edit/update/{{$item->id}}">
+                <form method="POST" action="/items/edit/update/{{$item->id}}"  enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
+                        <div class="mt-1 mb-4">
+                            <img src="{{ asset($item->type) }}"></br>
+                        </div>
+
                         <label style="color:#FF0000;">必須入力 * </label>
                         <div class="form-group">
                             <label for="name">書籍名<span style="color:#FF0000;">*</span></label>

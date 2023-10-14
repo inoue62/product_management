@@ -20,8 +20,11 @@
             @endif
 
             <div class="card card-primary">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    <input type="file" name="image" value="{{ old('image') }}">
+
                     <div class="card-body">
                         <label style="color:#FF0000;">必須入力 * </label>
                         <div class="form-group">

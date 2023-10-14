@@ -66,6 +66,7 @@
                                 <th>在庫</th>
                                 <th>価格</th>
                                 <th>登録内容変更</th>
+                                <th>tesuto</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,6 +94,7 @@
                                     <td>{{ $item->stock }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td><a href="/items/edit/{{$item->id}}">更新・削除</a></td>
+                                    <td>{{ $item->image }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
