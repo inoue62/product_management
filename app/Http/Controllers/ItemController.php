@@ -108,4 +108,54 @@ class ItemController extends Controller
 
         return view('item.add');
     }
+
+    public function edit(Request $request, $id)
+    {
+        $item = Item::find($request->id);
+        return view('item.edit',['item' => $item]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        //エラーチェック
+        $rule=[
+            'name' => 'required|max:100',                                                                          
+            'genre' => 'integer',                                                        
+            'author' => 'required|max:100',   
+            'publisher' => 'max:100', 
+            'detail' => 'max:500', 
+            ];
+        //エラーメッセージ
+        $msg=[
+            'name.required' => '書籍名を入力してください',
+            'name.max' => '書籍名は100文字以下で入力してください',
+            'genre.integer' => 'ジャンルを選択してください',
+            'author.required' => '著者名を入力してください',
+            'author.max' => '著者名は100文字以下で入力してください',
+            'publisher.max' => '出版社名は100文字以下で入力してください',
+            'detail.max' => '詳細は500文字以下で入力してください',
+            ];
+        $request->validate($rule,$msg);
+
+        $item = Item::find($id);
+        $item->name = $request->name;
+        $item->genre = $request->genre;
+        $item->release_date = $request->release_date;
+        $item->price = $request->price;
+        $item->author = $request->author;
+        $item->publisher = $request->publisher;
+        $item->stock = $request->stock;
+        $item->detail = $request->detail;
+
+        $item->save();
+
+        return redirect('/items');
+    }
+
+    // 削除処理
+    public function delete(Request $request,$id)
+    {
+        Item::find($request->id)->delete();
+        return redirect('/items');
+    }
 }
