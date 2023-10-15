@@ -161,6 +161,9 @@ class ItemController extends Controller
             'genre' => 'integer',                                                        
             'author' => 'required|max:100',   
             'publisher' => 'max:100', 
+            'release_date' => 'date', 
+            'stock' => 'integer', 
+            'price' => 'integer', 
             'detail' => 'max:500', 
             ];
         //エラーメッセージ
@@ -171,6 +174,9 @@ class ItemController extends Controller
             'author.required' => '著者名を入力してください',
             'author.max' => '著者名は100文字以下で入力してください',
             'publisher.max' => '出版社名は100文字以下で入力してください',
+            'release_date.date' => '発売日は日付形式で入力してください　例）2023/10/15',
+            'stock.integer' => '在庫は整数で入力してください',
+            'price.integer' => '価格は整数で入力してください',
             'detail.max' => '詳細は500文字以下で入力してください',
             ];
         $request->validate($rule,$msg);
