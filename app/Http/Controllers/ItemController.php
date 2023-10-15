@@ -78,8 +78,8 @@ class ItemController extends Controller
                 'author' => 'required|max:100',   
                 'publisher' => 'max:100', 
                 'release_date' => 'date', 
-                'stock' => 'integer', 
-                'price' => 'integer', 
+                'stock' => 'numeric', 
+                'price' => 'numeric', 
                 'detail' => 'max:500', 
                 ];
             //エラーメッセージ
@@ -162,8 +162,8 @@ class ItemController extends Controller
             'author' => 'required|max:100',   
             'publisher' => 'max:100', 
             'release_date' => 'date', 
-            'stock' => 'integer', 
-            'price' => 'integer', 
+            'stock' => 'numeric', 
+            'price' => 'numeric', 
             'detail' => 'max:500', 
             ];
         //エラーメッセージ
