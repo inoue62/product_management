@@ -101,6 +101,8 @@
             </div>
         </div>
     </div>
+
+    <div class="p-4">{{$items->links()}}</div>
 @stop
 
 @section('css')
