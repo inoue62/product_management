@@ -94,7 +94,7 @@
 
                         <div class="form-group">
                             <label for="InputDetail" class="form-label">詳細</label>
-                            <td><textarea type="text" id="InputDetail" class="form-control" name="detail" rows="5" value="{{ old('detail') }}" placeholder="詳細説明"></textarea></td>
+                            <input type="text" id="InputDetail" class="form-control" name="detail" value="{{ old('detail') }}" rows="5" placeholder="詳細説明">
                         </div>
                     </div>
 
