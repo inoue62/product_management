@@ -91,8 +91,8 @@ class ItemController extends Controller
                 'author.max' => '著者名は100文字以下で入力してください',
                 'publisher.max' => '出版社名は100文字以下で入力してください',
                 'release_date.date' => '発売日は日付形式で入力してください　例）2023/10/15',
-                'stock.integer' => '在庫は整数で入力してください',
-                'price.integer' => '価格は整数で入力してください',
+                'stock.numeric' => '在庫は整数で入力してください',
+                'price.numeric' => '価格は整数で入力してください',
                 'detail.max' => '詳細は500文字以下で入力してください',
                 ];
             $request->validate($rule,$msg);
@@ -175,8 +175,8 @@ class ItemController extends Controller
             'author.max' => '著者名は100文字以下で入力してください',
             'publisher.max' => '出版社名は100文字以下で入力してください',
             'release_date.date' => '発売日は日付形式で入力してください　例）2023/10/15',
-            'stock.integer' => '在庫は整数で入力してください',
-            'price.integer' => '価格は整数で入力してください',
+            'stock.numeric' => '在庫は整数で入力してください',
+            'price.numeric' => '価格は整数で入力してください',
             'detail.max' => '詳細は500文字以下で入力してください',
             ];
         $request->validate($rule,$msg);
