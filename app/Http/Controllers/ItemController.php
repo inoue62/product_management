@@ -77,9 +77,9 @@ class ItemController extends Controller
                 'genre' => 'integer',                                                        
                 'author' => 'required|max:100',   
                 'publisher' => 'max:100', 
-                'release_date' => 'date', 
-                'stock' => 'numeric', 
-                'price' => 'numeric', 
+                'release_date' => 'nullable|date', 
+                'stock' => 'nullable|numeric', 
+                'price' => 'nullable|numeric', 
                 'detail' => 'max:500', 
                 ];
             //エラーメッセージ
